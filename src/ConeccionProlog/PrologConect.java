@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ConeccionProlog;
+/*package ConeccionProlog;
 import org.jpl7.Atom;
 import org.jpl7.Query;
 import org.jpl7.Term;
@@ -13,7 +13,7 @@ import org.jpl7.Variable;
  *
  * @author Kevin Sanchez y Jirgort McCarty
  */
-public class PrologConect {
+/*public class PrologConect {
     private int sugerenciasTotal;
     private int [][] tablero = {{0,0,0,0,0,0,0,0,0},
                                {0,0,0,0,0,0,0,0,0},
@@ -25,15 +25,15 @@ public class PrologConect {
                                {0,0,0,0,0,0,0,0,0},
                                {0,0,0,0,0,0,0,0,0}};
     
-    private int [][] tableroInicial = {{0,2,0,0,0,0,8,0,0},
-                                      {0,0,9,1,0,0,0,5,0},
-                                      {4,0,0,0,8,0,0,0,3},
-                                      {0,0,8,0,0,7,0,0,0},
-                                      {0,0,0,5,0,0,2,0,0},
-                                      {0,0,2,0,9,0,0,0,0},
-                                      {3,0,0,0,0,2,0,0,7},
-                                      {0,0,1,0,0,5,0,0,2},
-                                      {0,0,0,0,7,1,3,0,0}};
+    private int [][] tableroInicial = {{0,0,0,0,0,0,0,0,0},
+                                      {0,0,0,0,0,0,0,0,0},
+                                      {0,0,0,0,0,0,0,0,0},
+                                      {0,0,0,0,0,0,0,0,0},
+                                      {0,0,0,0,0,0,0,0,0},
+                                      {0,0,0,0,0,0,0,0,0},
+                                      {0,0,0,0,0,0,0,0,0},
+                                      {0,0,0,0,0,0,0,0,0},
+                                      {0,0,0,0,0,0,0,0,0}};
     
     
     public PrologConect(){
@@ -46,7 +46,7 @@ public class PrologConect {
      * S: N/E
      * R: N/E
      */
-    public void updateSugerencias(){
+    /*public void updateSugerencias(){
         sugerenciasTotal += 1;
     }
     
@@ -98,5 +98,5 @@ public class PrologConect {
         return tableroInicial[x][y];
     }
     
-}
+}*/
  

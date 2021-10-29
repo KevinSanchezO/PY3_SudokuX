@@ -1,6 +1,6 @@
 package gui;
 
-import ConeccionProlog.PrologConect;
+import ConeccionProlog.Proyecto_SudokuX;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
         
@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
  * @author Kevin Sanchez y Jirgort McCarty
  */
 public class VentanaJuego extends javax.swing.JFrame {
-    public PrologConect juegoSudoku = new PrologConect();
+    public Proyecto_SudokuX juegoSudoku = new Proyecto_SudokuX();
     public JButton casilla = null;
     public int posX = 0;
     public int posY = 0;
@@ -1390,9 +1390,10 @@ public class VentanaJuego extends javax.swing.JFrame {
             } else {
                 str = Integer.toString(value);
             }
+            String valueString = Integer.toString(value);
             casilla.setText(str);
             deshabilitarBotonesNumeros();
-            juegoSudoku.modifyTablero(posX,posY,value);
+            juegoSudoku.modifyTablero(posX,posY,valueString);
         } else {
             System.out.println("Error");
         }
@@ -1497,11 +1498,11 @@ public class VentanaJuego extends javax.swing.JFrame {
     
     
     private void btnCrearNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearNuevoActionPerformed
-        //falta la llamada para crear un nuevo juego
         resetearBotonesCasillas();
-        juegoSudoku.resetearTablero();
+        juegoSudoku.crearNuevoJuego();
         juegoSudoku.repetirTablero();
         setTextCasillasNumeros();
+        juegoSudoku.mostrarTableroTerminal();
     }//GEN-LAST:event_btnCrearNuevoActionPerformed
 
     /**
@@ -1513,12 +1514,13 @@ public class VentanaJuego extends javax.swing.JFrame {
     private void setTextCasillasNumeros(){
         for(int x=0;x<9;x++){
             for(int y=0;y<9;y++){
-                int valor = juegoSudoku.getTableroInicialPos(x, y);
+                String valor = juegoSudoku.getTableroInicialPos(x, y);
                 String valorString;
-                if (valor == 0){
+                
+                if (valor == "0"){
                     valorString = " ";
                 } else {
-                    valorString = Integer.toString(valor);
+                    valorString = valor;
                 }
                 String str1 = Integer.toString(x+1);
                 String str2 = Integer.toString(y+1);
@@ -2400,7 +2402,16 @@ public class VentanaJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSugerenciaActionPerformed
 
     private void btnSolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolucionActionPerformed
-        // TODO add your handling code here:
+        juegoSudoku.solucionarSudoku();
+        for (int x=0; x<9; x++){
+            for (int y=0; y<9; y++){
+                String str1 = Integer.toString(x+1);
+                String str2 = Integer.toString(y+1);
+                String casilla = str1 + str2;
+                String valor = juegoSudoku.getTableroPos(x, y);
+                setTextCasillasNumerosAux(casilla, valor);
+            }
+        }
     }//GEN-LAST:event_btnSolucionActionPerformed
 
     private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
