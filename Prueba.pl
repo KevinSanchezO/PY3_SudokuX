@@ -1,6 +1,61 @@
 :- use_module(library(clpfd)).
+verificarGane(M1,M2,R):-
+     M1=[At,Bt,Ct,Dt,Et,Ft,Gt,Ht,It],
+     M2=[As,Bs,Cs,Ds,Es,Fs,Gs,Hs,Is],
 
+     isIguales(At,As,A),
+     isIguales(Bt,Bs,B),
+     isIguales(Ct,Cs,C),
 
+     isIguales(Dt,Ds,D),
+     isIguales(Et,Es,E),
+     isIguales(Ft,Fs,F),
+
+     isIguales(Gt,Gs,G),
+     isIguales(Ht,Hs,H),
+     isIguales(It,Is,I),
+
+     R is A+B+C+D+E+F+G+H+I,!.
+
+isIguales([],[],0):-!.
+
+isIguales([Q|L],[E|Z],Y):-
+     Q=E,
+     isIguales(L,Z,Y).
+isIguales([Q|L],[E|Z],Y):-
+     Q=\=E,
+     isIguales(L,Z,Y1),
+     Y is Y1+1.
+
+matrizVerificar(M,R):-
+     /*P = [[8,0,0,4,6,7,0,5,2],
+         [0,0,0,0,0,0,0,0,0],
+         [5,0,3,0,9,0,0,0,0],
+         [3,0,8,6,0,0,9,0,0],
+         [0,0,0,2,0,0,0,8,3],
+         [2,7,4,3,8,0,0,6,1],
+         [6,0,0,1,0,8,2,0,9],
+         [1,8,0,0,5,3,4,0,6],
+         [0,3,9,7,2,6,8,0,5]],!,*/
+     M=[As,Bs,Cs,Ds,Es,Fs,Gs,Hs,Is],
+
+     contar(0,As,A),
+     contar(0,Bs,B),
+     contar(0,Cs,C),
+
+     contar(0,Ds,D),
+     contar(0,Es,E),
+     contar(0,Fs,F),
+
+     contar(0,Gs,G),
+     contar(0,Hs,H),
+     contar(0,Is,I),
+
+     R is A+B+C+D+E+F+G+H+I.
+
+contar(X,[],0):-!.
+contar(X,[X|L],C):- !,contar(X,L,C1), C is C1+1.
+contar(X,[Y|L],C):- contar(X,L,C).
 sudoku(Rowx) :-
         length(Rowx, 9),
         maplist(same_length(Rowx), Rowx),!,
@@ -162,15 +217,15 @@ tablero4(4, P) :-
              [6,5,8,_,3,1,4,7,2]],!.
 
 tablero5(5, P) :-
-        P = [[_,_,4,7,2,_,_,8,9],
-             [4,_,_,6,_,1,_,5,2],
-             [_,_,7,_,9,8,4,1,3],
-             [6,_,_,1,_,_,9,_,4],
-             [5,3,4,7,_,_,2,6,_],
-             [_,7,9,2,_,_,_,_,_],
-             [_,_,_,_,1,7,5,_,_],
-             [8,_,5,9,4,6,_,2,7],
-             [_,4,_,8,2,5,1,_,6]],!.
+        P = [[_,9,_,6,_,5,2,_,_],
+             [7,8,2,9,_,1,_,_,_],
+             [_,4,_,_,_,_,1,_,9],
+             [8,6,_,_,5,_,7,_,3],
+             [_,2,7,8,_,_,_,_,1],
+             [4,5,9,3,_,7,_,6,2],
+             [2,1,_,5,6,9,3,_,7],
+             [9,_,_,_,8,3,_,2,6],
+             [6,3,_,7,_,4,9,_,_]],!.
 
 tablero6(6, P) :-
         P = [[1,_,4,_,_,3,6,9,8],

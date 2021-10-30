@@ -18,10 +18,6 @@ public class Proyecto_SudokuX {
     private List<String[]> matrizPistas;
     private List<String[]> matrizSolucion;
     private int sugerenciasTotal;
-    //private int totalIngresos;
-    //private int cantVerificaciones;
-    //private int erroresVerificaciones;
-    //private String estadoJuego;
     
     private String [][] tablero = {{"0","0","0","0","0","0","0","0","0"},
                                    {"0","0","0","0","0","0","0","0","0"},
@@ -47,6 +43,12 @@ public class Proyecto_SudokuX {
         sugerenciasTotal = 0;
     }
     
+    /**
+     * Objetivo: Obtener la lista con las posiciones de la matriz del sudoku que se mostraran en el tablero
+     * E: N/E
+     * S: la lista con las posiciones de la matriz del sudoku
+     * R: la lista contendra 18 elementos.
+     */
     public static List<String[]> pistasSudokuX(){
         String conexion="consult('Prueba.pl')";
         Query con= new Query(conexion);
@@ -57,23 +59,23 @@ public class Proyecto_SudokuX {
         //System.out.println("Esto es res(lista inicial completa):"+ res[0]);
         List<String[]> resMatrizPistas=new ArrayList<String[]>();
         String[] strSplit=res[0].toString().split(",");
-        System.out.println("Esto es el split con error:"+strSplit[0]);
+        //System.out.println("Esto es el split con error:"+strSplit[0]);
         for (int i=0; i<strSplit.length-1;i++){
             String[] matrizTemp=new String[2];
             for(int j=0;j<2;j++){
                 if(j==0){
                     if(i==0){
                         matrizTemp[j]=String.valueOf(strSplit[i].charAt(5));
-                        System.out.println("Elemento pos "+i+" en lista :"+matrizTemp[j]);
+                        //System.out.println("Elemento pos "+i+" en lista :"+matrizTemp[j]);
                     }else{
                         matrizTemp[j]=String.valueOf(strSplit[i].charAt(2));
-                        System.out.println("Elemento pos "+i+" en lista :"+matrizTemp[j]);
+                        //System.out.println("Elemento pos "+i+" en lista :"+matrizTemp[j]);
                     }
                     i++;
                 }else{
                     if(j==1){
                         matrizTemp[j]=String.valueOf(strSplit[i].charAt(1));
-                        System.out.println("Elemento pos "+i+" en lista :"+matrizTemp[j]);
+                        //System.out.println("Elemento pos "+i+" en lista :"+matrizTemp[j]);
                     }else{
                          matrizTemp[j]=String.valueOf(strSplit[i].charAt(1));
                          i++;
@@ -85,6 +87,12 @@ public class Proyecto_SudokuX {
         return resMatrizPistas;
     }
 
+    /**
+     * Objetivo: Crear una matriz con un juego de sudoku solucionado
+     * E: N/E
+     * S: una matriz con un sudoku solucionado
+     * R: Se escoje una matriz aleatoriamente
+     */
     public static List<String[]>solucionSudokuX(){
         String[] listaConsultas ={"tablero1(1,R)","tablero2(2,R)","tablero3(3,R)","tablero4(4,R)",
         "tablero5(5,R)","tablero6(6,R)","tablero7(7,R)","tablero8(8,R)","tablero9(9,R)",
@@ -94,7 +102,7 @@ public class Proyecto_SudokuX {
         consulta.hasSolution();
         consulta=new Query(listaConsultas[(int) Math.floor(Math.random()*10)]+",sudoku(R),maplist(label,R),!.");
         Map<String,Term>[] res=consulta.allSolutions();
-        System.out.println("Esto es res(lista inicial completa):"+ res[0]);
+        //System.out.println("Esto es res(lista inicial completa):"+ res[0]);
         List<String[]>matrizSolucion=new ArrayList<String[]>();
         String[] strSplit=res[0].toString().split(",");
 
@@ -131,7 +139,29 @@ public class Proyecto_SudokuX {
         matrizSolucion = solucionSudokuX();
         igualarTableroInicialMatrizPistas();
     }
+    public String contarVacios(){
+        String conexion="consult('Prueba.pl')";
+        Query con= new Query(conexion);
+        con.hasSolution();
+        String consulta= "matrizVerificar("+crearStringMatrizTablero()+",R)";
+        Query ejecutar= new Query(consulta);
+        
+        String res= ejecutar.oneSolution().get("R").toString();
+        System.out.println("Esta la cantidad de espacios vacios: "+res);
+        return res;
+    }
+    public String contarErrores(){
+        String conexion="consult('Prueba.pl')";
+        Query con= new Query(conexion);
+        con.hasSolution();
+        String consulta= "verificarGane("+crearStringMatrizTablero()+","+crearStringMatrizSolucion()+",R)";
+        Query ejecutar= new Query(consulta);
+        
+        String res= ejecutar.oneSolution().get("R").toString();
+        System.out.println("Esta la cantidad de errores: "+res);
+        return res;
     
+    }
     public void igualarTableroInicialMatrizPistas(){
         for (int x = 0; x<9; x++){
             String valor1 = matrizPistas.get(x)[0];
@@ -155,6 +185,12 @@ public class Proyecto_SudokuX {
         sugerenciasTotal += 1;
     }
     
+    /**
+     * Objetivo: Mostrar el tablero de juego en la terminal 
+     * E:N/E
+     * S:N/E
+     * R:N/E
+     */
     public void mostrarTableroTerminal(){
         for (int x=0;x<9;x++){
             for (int y=0;y<9;y++){
@@ -165,11 +201,23 @@ public class Proyecto_SudokuX {
         System.out.print("\n\n");
     }
     
+    /**
+     * Objetivo: cambiar una posicion de la matriz del tablero de juego 
+     * E: N/E
+     * S: N/E
+     * R: N/E
+     */
     public void modifyTablero(int x, int y, String valorCasilla){
         tablero[x-1][y-1] = valorCasilla;
         mostrarTableroTerminal();
     }
     
+    /**
+     * Objetivo: setea en 0 todas las posiciones de la matriz de tablero de juego.
+     * E: N/E
+     * S: N/E
+     * R: N/E
+     */
     public void resetearTablero(){
         for (int x=0;x<9;x++){
             for (int y=0;y<9;y++){
@@ -178,6 +226,12 @@ public class Proyecto_SudokuX {
         }
     }
     
+    /**
+     * Objetivo: Setea en 0 todas las posiciones de la matriz inicial del juego 
+     * E: N/E
+     * S: N/E
+     * R: N/E
+     */
     public void resetearTableroInicial(){
         for (int x=0;x<9;x++){
             for (int y=0;y<9;y++){
@@ -185,7 +239,13 @@ public class Proyecto_SudokuX {
             }
         }
     }
-    
+
+    /**
+     * Objetivo: iguala todas las posiciones del tablero de juego con el tablero incial 
+     * E: N/E
+     * S: N/E
+     * R: N/E
+     */
     public void repetirTablero(){
         for (int x=0;x<9;x++){
             for (int y=0;y<9;y++){
@@ -194,6 +254,12 @@ public class Proyecto_SudokuX {
         }
     }
     
+    /**
+     * Objetivo: Iguala las posiciones dela matriz del tablero de juego con las  de la matriz solucionada.
+     * E: N/E
+     * S: N/E
+     * R: N/E
+     */
     public void solucionarSudoku(){
         for (int x = 0; x<9; x++){
             for(int y = 0; y<9; y++){
@@ -202,6 +268,65 @@ public class Proyecto_SudokuX {
             }
         }
     }
+    
+    /**
+     * Objetivo: Crea un String de una matriz en base a la matriz tablero.
+     * E: N/E
+     * S: Un string que es una matriz creada en base a tablero
+     * R: N/E
+     */
+    public String crearStringMatrizTablero(){
+        String res = "[";
+        for (int x=0;x<9;x++){
+            res += "[";
+            for (int y=0;y<9;y++){
+                res += tablero[x][y];
+                if (y != 8){
+                    res +=",";
+                }
+            }
+            if (x != 8){
+                res +="],";
+            } else {
+                res +="]]";
+            }
+        }
+        return res;
+    }
+    
+    /**
+     * Objetivo: Crea un String de una matriz en base a la matriz solucion.
+     * E: N/E
+     * S: Un string que es una matriz creada en base a la solucion
+     * R: N/E
+     */
+    public String crearStringMatrizSolucion(){
+        String res = "[";
+        for (int x=0;x<9;x++){
+            res += "[";
+            for (int y=0;y<9;y++){
+                res += matrizSolucion.get(x)[y];
+                if (y != 8){
+                    res +=",";
+                }
+            }
+            if (x != 8){
+                res +="],";
+            } else {
+                res +="]]";
+            }
+        }
+        return res;
+    }
+    
+    /*public boolean verificarGane(){
+        for(int x=0;x<9;x++){
+            for(int y=0;y<9;y++){
+                
+            }
+        }
+        return true;
+    }*/
     
     public boolean verificarInicial(int x, int y){
         return tableroInicial[x-1][y-1] == "0";
