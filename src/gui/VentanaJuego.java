@@ -12,6 +12,8 @@ public class VentanaJuego extends javax.swing.JFrame {
     public JButton casilla = null;
     public int posX = 0;
     public int posY = 0;
+    public int cantJuegos = 0;
+    public String tipoFinalizacion= "";
     
     public VentanaJuego() {
         initComponents();
@@ -127,6 +129,9 @@ public class VentanaJuego extends javax.swing.JFrame {
         btnNumero7 = new javax.swing.JButton();
         btnNumero8 = new javax.swing.JButton();
         btnNumero9 = new javax.swing.JButton();
+        parentesis1 = new javax.swing.JLabel();
+        txtSugerenciasRestantes = new javax.swing.JLabel();
+        parentesis2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -935,6 +940,15 @@ public class VentanaJuego extends javax.swing.JFrame {
             }
         });
 
+        parentesis1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        parentesis1.setText("(");
+
+        txtSugerenciasRestantes.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        txtSugerenciasRestantes.setText("5");
+
+        parentesis2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        parentesis2.setText(")");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -944,32 +958,40 @@ public class VentanaJuego extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnCrearNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnReiniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnVerificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSugerencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(14, 14, 14)
-                                    .addComponent(lblTitle))
-                                .addComponent(btnSolucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtCeldas)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnCrearNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnReiniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnVerificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnSugerencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addComponent(lblTitle))
+                                    .addComponent(btnSolucion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(parentesis1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCantIngresos))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtVerificaciones)
+                                .addComponent(txtSugerenciasRestantes)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCantVerificaciones))
+                                .addComponent(parentesis2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtErrores)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCantErrores))
+                                .addComponent(txtCantErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtSugerencias)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCantSugerencias)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE))
+                                .addComponent(txtCantSugerencias, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(txtVerificaciones)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCantVerificaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtCeldas))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCantIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnNumero0, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1180,7 +1202,11 @@ public class VentanaJuego extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVerificar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSugerencia)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSugerencia)
+                    .addComponent(parentesis1)
+                    .addComponent(txtSugerenciasRestantes)
+                    .addComponent(parentesis2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSolucion)
                 .addGap(26, 26, 26)
@@ -1423,8 +1449,16 @@ public class VentanaJuego extends javax.swing.JFrame {
             String str;
             if (value == 0){
                 str = "";
+                int cant = Integer.parseInt(txtCantIngresos.getText());
+                if (cant>0){
+                    cant -= 1;
+                }
+                txtCantIngresos.setText(Integer.toString(cant));
             } else {
                 str = Integer.toString(value);
+                int cant = Integer.parseInt(txtCantIngresos.getText());
+                cant += 1;
+                txtCantIngresos.setText(Integer.toString(cant));
             }
             String valueString = Integer.toString(value);
             casilla.setText(str);
@@ -1534,12 +1568,27 @@ public class VentanaJuego extends javax.swing.JFrame {
     
     
     private void btnCrearNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearNuevoActionPerformed
+        if (cantJuegos > 0){
+            if (tipoFinalizacion == "autosolucion" || tipoFinalizacion == "exitosa"){
+                tipoFinalizacion = "abandono";
+            } else {
+                tipoFinalizacion = "abandono";
+                JOptionPane.showMessageDialog(null, "Tipo Finalizacion: "+tipoFinalizacion);
+            }
+        }
         resetearBotonesCasillas();
         juegoSudoku.crearNuevoJuego();
         juegoSudoku.repetirTablero();
         setTextCasillasNumeros();
         juegoSudoku.mostrarTableroTerminal();
-        System.out.println(juegoSudoku.crearStringMatrizSolucion());
+        cantJuegos += 1;
+        juegoSudoku.resetSugerencias();
+        
+        txtCantIngresos.setText("0");
+        txtCantVerificaciones.setText("0");
+        txtCantErrores.setText("0");
+        txtCantSugerencias.setText("0");
+        txtSugerenciasRestantes.setText("5");
     }//GEN-LAST:event_btnCrearNuevoActionPerformed
 
     /**
@@ -2427,18 +2476,20 @@ public class VentanaJuego extends javax.swing.JFrame {
 
     private void btnSugerenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSugerenciaActionPerformed
         if (juegoSudoku.getSugerenciasTotal() == 5){
-            JOptionPane.showMessageDialog(null, "No se pueden solicitar más de 5 sugerencias por juego", "Alert", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se pueden solicitar más de 5 sugerencias por juego");
         } else {
             //muestra sugerencia
             juegoSudoku.updateSugerencias();
+            int numRestantes = Integer.parseInt(txtSugerenciasRestantes.getText())-1;
+            txtSugerenciasRestantes.setText(Integer.toString(numRestantes));
         }
         int x = juegoSudoku.getSugerenciasTotal();
         String str = Integer.toString(x);
-        txtCantSugerencias.setText("");
         txtCantSugerencias.setText(str);
     }//GEN-LAST:event_btnSugerenciaActionPerformed
 
     private void btnSolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolucionActionPerformed
+        tipoFinalizacion = "autosolucion";
         juegoSudoku.solucionarSudoku();
         for (int x=0; x<9; x++){
             for (int y=0; y<9; y++){
@@ -2449,6 +2500,7 @@ public class VentanaJuego extends javax.swing.JFrame {
                 setTextCasillasNumerosAux(casilla, valor);
             }
         }
+        JOptionPane.showMessageDialog(null, "Tipo Finalización: autosolución");
     }//GEN-LAST:event_btnSolucionActionPerformed
 
     private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
@@ -2456,13 +2508,40 @@ public class VentanaJuego extends javax.swing.JFrame {
         juegoSudoku.resetearTablero();
         juegoSudoku.repetirTablero();
         setTextCasillasNumeros();
+        
+        juegoSudoku.resetSugerencias();
+        
+        txtCantIngresos.setText("0");
+        txtCantVerificaciones.setText("0");
+        txtCantErrores.setText("0");
+        txtCantSugerencias.setText("0");
+        txtSugerenciasRestantes.setText("5");
     }//GEN-LAST:event_btnReiniciarActionPerformed
 
     private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
         System.out.println(juegoSudoku.crearStringMatrizTablero());
         System.out.println(juegoSudoku.crearStringMatrizSolucion());
-        juegoSudoku.contarVacios();
-        juegoSudoku.contarErrores();
+        
+        String cantVacios = juegoSudoku.contarVacios();
+        String cantErrores = juegoSudoku.contarErrores();
+        
+        int cantVaciosInt = Integer.parseInt(cantVacios);
+        int cantErroresInt = Integer.parseInt(cantErrores);
+        
+        int total = cantErroresInt - cantVaciosInt;
+        
+        if (cantErroresInt == 0){
+            tipoFinalizacion = "exitosa";
+            JOptionPane.showMessageDialog(null, "Juego finalizado exitosamente, felicidades!!!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Casillas vacias: "+cantVacios+"\nDigitos incorectos: "+total);
+            int valueX = Integer.parseInt(txtCantErrores.getText());
+            valueX += 1;
+            txtCantErrores.setText(Integer.toString(valueX));
+        }
+        int value = Integer.parseInt(txtCantVerificaciones.getText());
+        value += 1;
+        txtCantVerificaciones.setText(Integer.toString(value));
         
     }//GEN-LAST:event_btnVerificarActionPerformed
  
@@ -2575,6 +2654,8 @@ public class VentanaJuego extends javax.swing.JFrame {
     private javax.swing.JButton btnSugerencia;
     private javax.swing.JButton btnVerificar;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel parentesis1;
+    private javax.swing.JLabel parentesis2;
     private javax.swing.JLabel txtCantErrores;
     private javax.swing.JLabel txtCantIngresos;
     private javax.swing.JLabel txtCantSugerencias;
@@ -2582,6 +2663,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     private javax.swing.JLabel txtCeldas;
     private javax.swing.JLabel txtErrores;
     private javax.swing.JLabel txtSugerencias;
+    private javax.swing.JLabel txtSugerenciasRestantes;
     private javax.swing.JLabel txtVerificaciones;
     // End of variables declaration//GEN-END:variables
 }

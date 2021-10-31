@@ -28,39 +28,49 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnCrearNuevo" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnReiniciar" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnVerificar" alignment="0" max="32767" attributes="0"/>
-                              <Component id="btnSugerencia" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                  <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btnCrearNuevo" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnReiniciar" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnVerificar" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnSugerencia" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="btnSolucion" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="btnSolucion" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtCeldas" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="parentesis1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtCantIngresos" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtVerificaciones" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtSugerenciasRestantes" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtCantVerificaciones" min="-2" max="-2" attributes="0"/>
+                              <Component id="parentesis2" min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="txtErrores" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtCantErrores" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCantErrores" min="-2" pref="16" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="txtSugerencias" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtCantSugerencias" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCantSugerencias" min="-2" pref="16" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtVerificaciones" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtCantVerificaciones" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="txtCeldas" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtCantIngresos" min="-2" pref="19" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="102" max="32767" attributes="0"/>
+                      <EmptySpace pref="91" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -318,7 +328,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnVerificar" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnSugerencia" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnSugerencia" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="parentesis1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSugerenciasRestantes" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="parentesis2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnSolucion" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -1880,6 +1895,30 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNumero9ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="parentesis1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="("/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="txtSugerenciasRestantes">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="5"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="parentesis2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value=")"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

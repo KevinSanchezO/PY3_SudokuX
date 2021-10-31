@@ -160,8 +160,22 @@ public class Proyecto_SudokuX {
         String res= ejecutar.oneSolution().get("R").toString();
         System.out.println("Esta la cantidad de errores: "+res);
         return res;
-    
     }
+    
+    public List<String> obtenerSugerencias(){    
+        String conexion="consult('Prueba.pl')";
+        Query con= new Query(conexion);
+        con.hasSolution();
+        String consulta= "generaPosiciones(2,R)";
+        Query ejecutar= new Query(consulta);
+        Map<String, Term>[] res =ejecutar.allSolutions();
+        
+        List<String[]> resMatrizPistas=new ArrayList<String[]>();
+        String[] strSplit=res[0].toString().split(",");
+        
+        
+    }
+    
     public void igualarTableroInicialMatrizPistas(){
         for (int x = 0; x<9; x++){
             String valor1 = matrizPistas.get(x)[0];
@@ -319,17 +333,14 @@ public class Proyecto_SudokuX {
         return res;
     }
     
-    /*public boolean verificarGane(){
-        for(int x=0;x<9;x++){
-            for(int y=0;y<9;y++){
-                
-            }
-        }
-        return true;
-    }*/
+
     
     public boolean verificarInicial(int x, int y){
         return tableroInicial[x-1][y-1] == "0";
+    }
+    
+    public void resetSugerencias(){
+        sugerenciasTotal = 0;
     }
     
     public int getSugerenciasTotal(){
