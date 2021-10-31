@@ -1,6 +1,7 @@
 package gui;
 
 import ConeccionProlog.Proyecto_SudokuX;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
         
@@ -2475,9 +2476,24 @@ public class VentanaJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_btn99ActionPerformed
 
     private void btnSugerenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSugerenciaActionPerformed
+
         if (juegoSudoku.getSugerenciasTotal() == 5){
             JOptionPane.showMessageDialog(null, "No se pueden solicitar más de 5 sugerencias por juego");
         } else {
+            List<String[]> sugerencia = juegoSudoku.sugerenciaProbar();
+            
+            String posTableroX = sugerencia.get(0)[0];
+            String posTableroY = sugerencia.get(0)[1];
+            String posicion = posTableroX + posTableroY;
+            
+            int posTableroX_int = Integer.parseInt(posTableroX);
+            int posTableroY_int = Integer.parseInt(posTableroY);
+            
+            String valor = juegoSudoku.getSolucionPos(posTableroX_int-1, posTableroY_int-1);
+            
+            juegoSudoku.modifyTablero(posTableroX_int, posTableroY_int, valor);
+            setTextCasillasNumerosAux(posicion, valor);
+            
             //muestra sugerencia
             juegoSudoku.updateSugerencias();
             int numRestantes = Integer.parseInt(txtSugerenciasRestantes.getText())-1;

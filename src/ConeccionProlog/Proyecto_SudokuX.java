@@ -130,6 +130,12 @@ public class Proyecto_SudokuX {
         return matrizSolucion;
     }
     
+    /**
+     * Objetivo: resetear los valores del juego a cero para reiniciar el juego 
+     * E: N/E
+     * S: N/E
+     * R: N/E
+     */
     public void crearNuevoJuego(){
         resetearTablero();
         resetearTableroInicial();
@@ -139,6 +145,13 @@ public class Proyecto_SudokuX {
         matrizSolucion = solucionSudokuX();
         igualarTableroInicialMatrizPistas();
     }
+    
+    /**
+     * Objetivo: Conteo de las posiciones vacias del tablero de juego desde prolog
+     * E: N/E
+     * S: La cantidad de posiciones vacias del tablero en un String
+     * R: N/E
+     */
     public String contarVacios(){
         String conexion="consult('Prueba.pl')";
         Query con= new Query(conexion);
@@ -150,6 +163,13 @@ public class Proyecto_SudokuX {
         System.out.println("Esta la cantidad de espacios vacios: "+res);
         return res;
     }
+    
+    /**
+     * Objetivo: Contar la cantidad de matrices erroneas en el tablero de juego
+     * E:N/E
+     * S:la cantidad de casillas erroneas en el tablero en un string
+     * R:N/E
+     */
     public String contarErrores(){
         String conexion="consult('Prueba.pl')";
         Query con= new Query(conexion);
@@ -162,20 +182,78 @@ public class Proyecto_SudokuX {
         return res;
     }
     
-    public List<String> obtenerSugerencias(){    
+    /**
+     * Objetivo: verifica que las posiciones de la sugerencia son validas
+     * E: N/E
+     * S: La posicion de la sugerencia validada
+     * R: N/E
+     */
+    public List<String[]> sugerenciaProbar(){
+        boolean bandera = false;
+        List<String[]> res = null;
+        while (!bandera){
+            res = obtenerSugerencias();
+            int posX = Integer.parseInt(res.get(0)[0]);
+            int posY = Integer.parseInt(res.get(0)[1]);
+            
+            if(matrizSolucion.get(posX-1)[posY-1] != tablero[posX-1][posY-1]){
+                bandera = true;
+            }
+        }
+        return res;
+    }
+    
+    /**
+     * Objetivo: Obtener una posicion aleatoria que sera la sugerencia 
+     * E: N/E
+     * S: la posicion de la sugerencia del tablero.
+     * R: N/E
+     */
+    public List<String[]> obtenerSugerencias(){    
         String conexion="consult('Prueba.pl')";
         Query con= new Query(conexion);
         con.hasSolution();
         String consulta= "generaPosiciones(2,R)";
         Query ejecutar= new Query(consulta);
-        Map<String, Term>[] res =ejecutar.allSolutions();
+        Map<String, Term>[] res = ejecutar.allSolutions();
         
         List<String[]> resMatrizPistas=new ArrayList<String[]>();
         String[] strSplit=res[0].toString().split(",");
+        //System.out.println("Esto es el split con error:"+strSplit[0]);
+        for (int i=0; i<strSplit.length-1;i++){
+            String[] matrizTemp=new String[2];
+            for(int j=0;j<2;j++){
+                if(j==0){
+                    if(i==0){
+                        matrizTemp[j]=String.valueOf(strSplit[i].charAt(4));
+                        System.out.println("Elemento pos "+i+" en lista :"+matrizTemp[j]);
+                    }else{
+                        matrizTemp[j]=String.valueOf(strSplit[i].charAt(2));
+                        System.out.println("Elemento pos "+i+" en lista :"+matrizTemp[j]);
+                    }
+                    i++;
+                }else{
+                    if(j==1){
+                        matrizTemp[j]=String.valueOf(strSplit[i].charAt(1));
+                        System.out.println("Elemento pos "+i+" en lista :"+matrizTemp[j]);
+                    }else{
+                         matrizTemp[j]=String.valueOf(strSplit[i].charAt(1));
+                         i++;
+                    }
+                }
+            }
+            resMatrizPistas.add(matrizTemp);
+        }
         
-        
+        return resMatrizPistas;
     }
     
+    /**
+     * Objetivo: igualar el tablero incial con el valor y posicion de la matriz de pistas 
+     * E: N/E
+     * S: N/E
+     * R: N/E
+     */
     public void igualarTableroInicialMatrizPistas(){
         for (int x = 0; x<9; x++){
             String valor1 = matrizPistas.get(x)[0];
@@ -333,7 +411,9 @@ public class Proyecto_SudokuX {
         return res;
     }
     
-
+    public String getSolucionPos(int x, int y){
+        return matrizSolucion.get(x)[y];
+    }
     
     public boolean verificarInicial(int x, int y){
         return tableroInicial[x-1][y-1] == "0";
